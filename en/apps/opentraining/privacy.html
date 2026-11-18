@@ -27,7 +27,7 @@
 <main class="doc">
   <div class="wrap">
     <h1>Privacy — OpenTraining</h1>
-    <div class="meta mono">Last updated: November 11, 2026</div>
+    <div class="meta mono">Last updated: November 18, 2026</div>
 
     <p>This page complements the <a href="../../privacy.html">PAPP DEV general privacy policy</a> and describes how OpenTraining, our running and triathlon training planning and tracking platform, processes personal data. P A P P DESENVOLVIMENTO DE SOFTWARE LTDA ("PAPP DEV") is the controller of this data.</p>
 
@@ -41,6 +41,9 @@
       <li><b>Login sessions:</b> the device and the browser or app used (user agent) for each session, so you can see where you are signed in and end sessions.</li>
       <li><b>Training data:</b> scheduled workouts, training thresholds and zones (for example pace, heart rate and power) and comments exchanged between athlete and coach.</li>
       <li><b>Activities uploaded by the athlete:</b> FIT or GPX files of completed activities, which may contain routes with GPS location, heart rate, power, cadence, distance, duration and pace.</li>
+      <li><b>Communication within the coaching team:</b> chat messages, coach announcements, community posts and comments, reactions, event attendance, reports and blocks. Uploaded photos are resized and stored without metadata, including without the camera location.</li>
+      <li><b>Coach content:</b> workout library, plans, uploaded videos or YouTube and Vimeo links, and the coaching team's public page with the information the coach chooses to publish (photo, name, description, specialties, city and contacts).</li>
+      <li><b>Notifications:</b> the device's notification identifier, the device language and your notification preferences.</li>
     </ul>
     <p>Heart rate, power and other physiological metrics are <b>sensitive personal data</b> (health-related) under the LGPD, and GPS routes reveal where you train. We only process this data with your <b>specific and explicit consent</b>, requested in the app before your first activity (file upload, manual entry or Garmin), and you can withdraw it at any time. If you withdraw it, we stop receiving new activities from you; the activities already recorded are kept until you ask us to delete them.</p>
     <p>OpenTraining does not use third-party analytics, telemetry or tracking tools, does not show ads and does not collect advertising identifiers.</p>
@@ -59,19 +62,36 @@
     <p>You can disconnect at any time in the app or in your Garmin Connect account settings. When you disconnect, we stop receiving data from Garmin and <b>delete the data received from Garmin within 30 days</b>, unless the law requires us to keep it. You can also request access, correction, export or deletion of this data as described in "Your rights".</p>
     <p>Garmin and Garmin Connect are trademarks of Garmin Ltd. or its subsidiaries. PAPP DEV is not affiliated with or endorsed by Garmin.</p>
 
+    <h2>[Community, announcements and public page]</h2>
+    <p>Messages, announcements and community posts are only seen by people in the same coaching team who are allowed to see them: one-to-one chat stays between the athlete and the coach; announcements go to the whole team or to selected athletes; the community is seen by team members. Activities and training data are never posted to the community automatically. The coach receives reports without knowing who sent them and can remove content; athletes can block other athletes.</p>
+    <p>The coaching team's public page only exists if the coach publishes it. It shows only the information the coach filled in, can be seen by anyone with the link, and is marked so search engines do not list it.</p>
+
+    <h2>[Coach's AI]</h2>
+    <p>A coach may choose to connect the artificial intelligence tool they already use (for example Claude or ChatGPT) to OpenTraining, through the MCP protocol, to create and maintain <b>their own content</b>: library workouts, folders and training plans, videos by link, and drafts of announcements and events.</p>
+    <ul>
+      <li>The connection only happens if the coach authorizes it on an OpenTraining screen, and it applies to one coaching team. The coach can disconnect at any time in Account; the connection also ends when the coach changes their password or stops being the team owner.</li>
+      <li><b>The AI never receives athletes' data:</b> no names, calendars, zones, feedback, messages or posts, and no activities, health data or data received from Garmin.</li>
+      <li>Announcements and events written by the AI stay as drafts, visible only to the coach, until the coach reviews and publishes them in the app.</li>
+      <li>OpenTraining does not run AI models and does not send data to AI providers on its own. The AI provider is chosen and contracted by the coach, and what the coach asks the AI and the coach content the AI reads or writes are also kept by that provider, under that provider's terms.</li>
+      <li>We record what the AI changed (which tool and which item) so the coach can review it; we do not receive the text of the conversation between the coach and the AI.</li>
+    </ul>
+
     <h2>[How we use data]</h2>
     <ul>
       <li>So that the coach can plan workouts, follow completed activities, compare planned and executed training, and adjust the athlete's plan.</li>
       <li>To create and protect your account, and to send login emails and coaching team invitations.</li>
       <li>To provide and maintain the service, provide support and fix errors.</li>
     </ul>
-    <p>Data is not sold, not used for advertising or profiling, and not sent to artificial intelligence or machine learning tools or platforms.</p>
+    <p>Data is not sold, not used for advertising or profiling, and athletes' data is not sent to artificial intelligence or machine learning tools or platforms. The only AI connection is the coach's own, limited to the coach's content, as described in "Coach's AI".</p>
 
     <h2>[Sharing]</h2>
     <ul>
       <li><b>Your coach:</b> the athlete's training data and activities are visible to the coach of the coaching team the athlete belongs to, which is the purpose of the service. When an athlete leaves a coaching team, the coach no longer has access to new data.</li>
       <li><b>Hosting:</b> data is stored on a server contracted by PAPP DEV and located in Brazil, under PAPP DEV's control.</li>
       <li><b>Garmin:</b> only if you connect your Garmin account, we send Garmin the workouts scheduled for you, as described in "Garmin integration".</li>
+      <li><b>Apple and Google (notifications):</b> to send notifications to your device we use Apple Push Notification service (APNs) on iPhone and Google's Firebase Cloud Messaging on Android. They receive the device identifier and the short notification text (for example, a workout name or the start of a message), never health or Garmin data, and may process it outside Brazil. You choose which notifications you receive in the app settings.</li>
+      <li><b>YouTube and Vimeo:</b> when the coach uses a video by link, the YouTube or Vimeo player only loads if you tap to watch. From then on, the video service receives browsing data as with any embedded video; we use YouTube's privacy-enhanced mode and Vimeo's do-not-track mode.</li>
+      <li><b>Coach's AI:</b> only the coach's content, and only if the coach connects their own AI, as described in "Coach's AI".</li>
       <li><b>Google:</b> used only to send transactional login and invitation emails, which contain your name and email. Google acts on our behalf and may process this data outside Brazil, as described in the <a href="../../privacy.html">general policy</a>.</li>
       <li>We may also share data when required by law or court order.</li>
     </ul>
