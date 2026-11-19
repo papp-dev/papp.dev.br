@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Um presente · Jornada do Dentinho</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/png" href="../assets/icone.png">
+<meta name="theme-color" content="#EDD3EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../assets/dentinho.css">
+<style>
+.gift{text-align:center}
+.gift img.anim{width:min(15rem,60vw);height:auto;display:block;margin:0 auto .5rem;border-radius:1rem}
+.code{display:inline-block;margin:.25rem 0 0;padding:.7rem 1.3rem;border:2px dashed var(--action);border-radius:1rem;background:var(--tint);
+ font:700 1.5rem/1.2 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--text)}
+.label{font:600 .85rem/1 "Fredoka",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--action);margin-top:1rem}
+.actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:1.25rem 0 .5rem}
+.btn{font:700 1.05rem/1 "Fredoka",sans-serif;padding:1rem 1.6rem;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+.btn.primary{background:var(--action);color:#fff}
+.btn.ghost{background:var(--card);color:var(--action);border:1.5px solid var(--border)}
+.how{text-align:left;margin-top:1.5rem}
+.fine{font-size:.78rem;color:var(--muted);text-align:left;margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="bar">
+<a class="brand" href="../"><img id="logo" src="../assets/logo-pt.png" alt="Jornada do Dentinho" width="900" height="300"></a>
+</div></div></header>
+<main><div class="wrap">
+<div class="card gift" id="gift">
+  <img class="anim" src="presente.gif" alt="">
+  <h1 id="t-titulo"></h1>
+  <p><strong id="t-oi"></strong></p>
+  <p id="t-corpo"></p>
+  <div class="label" id="t-seu"></div>
+  <div class="code" id="code"></div>
+  <div class="actions">
+    <a class="btn primary" id="redeem" href="#"></a>
+    <button class="btn ghost" id="copy" type="button"></button>
+  </div>
+  <div class="how"><p><strong id="t-como"></strong></p><ol><li id="t-p1"></li><li id="t-p2"></li><li id="t-p3"></li></ol>
+  <p id="t-fim"></p></div>
+  <p class="fine" id="t-termos"></p>
+</div>
+<div class="card hidden" id="bad"><p id="t-invalido"></p></div>
+</div></main>
+<script>
+// Textos do presente (página e e-mail), em 3 idiomas. Mantido igual em
+// site/presente/index.html (cópia embutida) e ferramenta.html.
+window.PRESENTE_TEXTOS = {
+  pt: {
+    titulo: "Um presente para você 🎁",
+    oi: "Oi, {nome}!",
+    corpo: "Nossa curadoria selecionou algumas odontopediatras para conhecer a <strong>Jornada do Dentinho</strong> de perto, e você é uma delas. O app acompanha a saúde bucal da criança, da gestação até a troca dos dentes. Separamos <strong>{presente}</strong> para você testar tudo e nos contar o que achou.",
+    presentePadrao: "1 ano de Premium grátis",
+    seuCodigo: "Seu código",
+    resgatar: "Resgatar meu presente",
+    copiar: "Copiar código", copiado: "Copiado!",
+    como: "Como resgatar, no iPhone:",
+    passo1: "Toque em <strong>Resgatar meu presente</strong>: a App Store abre com o código.",
+    passo2: "Ou, no app, vá em <strong>Configurações → Seu plano → Resgatar código</strong> e digite o código.",
+    passo3: "Ainda não tem o app? <a href=\"https://apps.apple.com/app/id6823827980\">Baixe a Jornada do Dentinho na App Store</a>.",
+    fim: "Sua opinião de especialista vale muito para nós. É só responder o e-mail ou escrever para contato@papp.dev.br. 💜",
+    termos: "Código válido até {validade}, ou enquanto durar a oferta, nos países em que o app está disponível na App Store. É preciso ter uma conta Apple, sujeito à aceitação prévia dos termos de licença e de uso. O código não pode ser revendido e não tem valor em dinheiro. Depois do período grátis, a assinatura renova pelo preço normal do plano anual, a menos que seja cancelada até 24 horas antes, nos Ajustes da conta Apple. Termos completos: <a href=\"https://www.apple.com/legal/internet-services/itunes/ww/\">apple.com/legal/internet-services/itunes/ww</a>. Oferta e conteúdo fornecidos por P A P P Desenvolvimento de Software Ltda.",
+    invalido: "Este link de presente está incompleto. Confira o link que você recebeu ou escreva para contato@papp.dev.br.",
+    assunto: "Um presente para você: Jornada do Dentinho 🎁"
+  },
+  en: {
+    titulo: "A gift for you 🎁",
+    oi: "Hi, {nome}!",
+    corpo: "Our curators picked a few pediatric dentists to get to know <strong>Little Tooth Journey</strong> up close, and you're one of them. The app follows a child's oral health from pregnancy until the baby teeth fall out. We set aside <strong>{presente}</strong> so you can try everything and tell us what you think.",
+    presentePadrao: "1 year of Premium for free",
+    seuCodigo: "Your code",
+    resgatar: "Redeem my gift",
+    copiar: "Copy code", copiado: "Copied!",
+    como: "How to redeem, on iPhone:",
+    passo1: "Tap <strong>Redeem my gift</strong>: the App Store opens with the code.",
+    passo2: "Or, in the app, go to <strong>Settings → Your plan → Redeem code</strong> and enter the code.",
+    passo3: "Don't have the app yet? <a href=\"https://apps.apple.com/app/id6823827980\">Get Little Tooth Journey on the App Store</a>.",
+    fim: "Your expert opinion means a lot to us. Just reply to the email or write to contato@papp.dev.br. 💜",
+    termos: "Code valid until {validade}, or while supplies last, in the countries where the app is available on the App Store. An Apple Account is required, subject to prior acceptance of license and usage terms. The code is not for resale and has no cash value. After the free period, the subscription renews at the regular price of the annual plan unless canceled at least 24 hours before, in your Apple Account settings. Full terms: <a href=\"https://www.apple.com/legal/internet-services/itunes/ww/\">apple.com/legal/internet-services/itunes/ww</a>. Offer and content provided by P A P P Desenvolvimento de Software Ltda.",
+    invalido: "This gift link is incomplete. Check the link you received or write to contato@papp.dev.br.",
+    assunto: "A gift for you: Little Tooth Journey 🎁"
+  },
+  es: {
+    titulo: "Un regalo para ti 🎁",
+    oi: "¡Hola, {nome}!",
+    corpo: "Nuestra curaduría seleccionó a algunas odontopediatras para conocer de cerca <strong>El Viaje del Dientecito</strong>, y tú eres una de ellas. La app acompaña la salud bucal del niño, desde el embarazo hasta el cambio de dientes. Te reservamos <strong>{presente}</strong> para que lo pruebes todo y nos cuentes qué te parece.",
+    presentePadrao: "1 año de Premium gratis",
+    seuCodigo: "Tu código",
+    resgatar: "Canjear mi regalo",
+    copiar: "Copiar código", copiado: "¡Copiado!",
+    como: "Cómo canjearlo, en el iPhone:",
+    passo1: "Toca <strong>Canjear mi regalo</strong>: la App Store se abre con el código.",
+    passo2: "O, en la app, ve a <strong>Ajustes → Tu plan → Canjear código</strong> e introduce el código.",
+    passo3: "¿Aún no tienes la app? <a href=\"https://apps.apple.com/app/id6823827980\">Descarga El Viaje del Dientecito en la App Store</a>.",
+    fim: "Tu opinión de especialista es muy valiosa para nosotros. Solo responde el correo o escribe a contato@papp.dev.br. 💜",
+    termos: "Código válido hasta el {validade}, o hasta agotar existencias, en los países donde la app está disponible en la App Store. Se necesita una cuenta de Apple, sujeto a la aceptación previa de los términos de licencia y uso. El código no se puede revender y no tiene valor en efectivo. Tras el periodo gratuito, la suscripción se renueva al precio normal del plan anual, salvo que se cancele al menos 24 horas antes, en los ajustes de la cuenta de Apple. Términos completos: <a href=\"https://www.apple.com/legal/internet-services/itunes/ww/\">apple.com/legal/internet-services/itunes/ww</a>. Oferta y contenido proporcionados por P A P P Desenvolvimento de Software Ltda.",
+    invalido: "Este enlace de regalo está incompleto. Revisa el enlace que recibiste o escribe a contato@papp.dev.br.",
+    assunto: "Un regalo para ti: El Viaje del Dientecito 🎁"
+  }
+};
+
+// Os dados vêm no fragmento (#...), que o navegador nunca envia ao servidor:
+// a página não guarda nem registra nada, só monta o presente na tela.
+window.addEventListener("hashchange", function () { location.reload(); });
+(function () {
+  var p = new URLSearchParams(location.hash.slice(1));
+  var lang = ({pt: "pt", en: "en", es: "es"})[p.get("l")] || "pt";
+  var T = window.PRESENTE_TEXTOS[lang];
+  document.documentElement.lang = {pt: "pt-BR", en: "en", es: "es"}[lang];
+  document.getElementById("logo").src = "../assets/logo-" + lang + ".png";
+  var esc = function (s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; };
+  var nome = (p.get("n") || "").trim().slice(0, 40);
+  var codigo = (p.get("c") || "").trim().toUpperCase();
+  var validade = (p.get("v") || "").trim().slice(0, 40);
+  var presente = (p.get("p") || "").trim().slice(0, 60) || T.presentePadrao;
+  var set = function (id, html) { document.getElementById(id).innerHTML = html; };
+  if (!/^[A-Z0-9]{6,24}$/.test(codigo)) {
+    document.getElementById("gift").classList.add("hidden");
+    document.getElementById("bad").classList.remove("hidden");
+    set("t-invalido", T.invalido);
+    return;
+  }
+  document.title = T.titulo.replace(" 🎁", "") + " · Jornada do Dentinho";
+  set("t-titulo", T.titulo);
+  set("t-oi", nome ? T.oi.replace("{nome}", esc(nome)) : T.oi.replace(", {nome}", "").replace(" {nome}", ""));
+  set("t-corpo", T.corpo.replace("{presente}", esc(presente)));
+  set("t-seu", T.seuCodigo);
+  document.getElementById("code").textContent = codigo;
+  var redeem = document.getElementById("redeem");
+  redeem.textContent = T.resgatar;
+  redeem.href = "https://apps.apple.com/redeem?ctx=offercodes&id=6823827980&code=" + encodeURIComponent(codigo);
+  var copy = document.getElementById("copy");
+  copy.textContent = T.copiar;
+  copy.onclick = function () {
+    navigator.clipboard.writeText(codigo).then(function () { copy.textContent = T.copiado; setTimeout(function () { copy.textContent = T.copiar; }, 1800); });
+  };
+  set("t-como", T.como); set("t-p1", T.passo1); set("t-p2", T.passo2); set("t-p3", T.passo3); set("t-fim", T.fim);
+  set("t-termos", T.termos.replace("{validade}", esc(validade || "—")));
+})();
+</script>
+</body>
+</html>
