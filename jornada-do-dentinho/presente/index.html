@@ -24,6 +24,9 @@
 .btn.ghost{background:var(--card);color:var(--action);border:1.5px solid var(--border)}
 .how{text-align:left;margin-top:1.5rem}
 .fine{font-size:.78rem;color:var(--muted);text-align:left;margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem}
+.review{margin-top:1.5rem;padding:1rem 1.25rem;border-radius:1rem;background:var(--tint)}
+.review p{margin:.3rem 0}
+.review .btn{display:inline-block;margin-top:.6rem}
 .hidden{display:none}
 </style>
 </head>
@@ -45,11 +48,15 @@
   </div>
   <div class="how"><p><strong id="t-como"></strong></p><ol><li id="t-p1"></li><li id="t-p2"></li><li id="t-p3"></li></ol>
   <p id="t-fim"></p></div>
+  <div class="review"><p><strong id="t-avaliar-titulo"></strong></p><p id="t-avaliar"></p>
+  <a class="btn ghost" id="review" href="https://apps.apple.com/app/id6823827980?action=write-review" target="_blank" rel="noopener"></a></div>
   <p class="fine" id="t-termos"></p>
 </div>
 <div class="card hidden" id="bad"><p id="t-invalido"></p></div>
 </div></main>
 <script>
+// Textos do presente (página e e-mail), em 3 idiomas. corpo = feminino; corpo_m = masculino
+// (o inglês não muda). Mantido igual em
 // Textos do presente (página e e-mail), em 3 idiomas. corpo = feminino; corpo_m = masculino
 // (o inglês não muda). Mantido igual em
 // site/presente/index.html (cópia embutida) e ferramenta.html.
@@ -68,6 +75,9 @@ window.PRESENTE_TEXTOS = {
     passo1: "Toque em <strong>Resgatar meu presente</strong>: a App Store abre com o código.",
     passo2: "Ou, no app, vá em <strong>Configurações → Seu plano → Resgatar código</strong> e digite o código.",
     passo3: "Ainda não tem o app? <a href=\"https://apps.apple.com/app/id6823827980\">Baixe a Jornada do Dentinho na App Store</a>.",
+    avaliarTitulo: "Gostou do app?",
+    avaliar: "Se quiser, deixe a sua avaliação sincera na App Store. Ela é opcional e não muda nada no seu presente, mas ajuda outras famílias a encontrar a Jornada do Dentinho.",
+    avaliarBotao: "Avaliar na App Store",
     fim: "Sua opinião de especialista vale muito para nós. É só responder o e-mail ou escrever para contato@papp.dev.br. 💜",
     termos: "Código válido até {validade}, ou enquanto durar a oferta, nos países em que o app está disponível na App Store. É preciso ter uma conta Apple, sujeito à aceitação prévia dos termos de licença e de uso. O código não pode ser revendido e não tem valor em dinheiro. Depois do período grátis, a assinatura renova pelo preço normal do plano anual, a menos que seja cancelada até 24 horas antes, nos Ajustes da conta Apple. Termos completos: <a href=\"https://www.apple.com/legal/internet-services/itunes/ww/\">apple.com/legal/internet-services/itunes/ww</a>. Oferta e conteúdo fornecidos por P A P P Desenvolvimento de Software Ltda.",
     invalido: "Este link de presente não é válido. Confira o link que você recebeu ou escreva para contato@papp.dev.br.",
@@ -86,6 +96,9 @@ window.PRESENTE_TEXTOS = {
     passo1: "Tap <strong>Redeem my gift</strong>: the App Store opens with the code.",
     passo2: "Or, in the app, go to <strong>Settings → Your plan → Redeem code</strong> and enter the code.",
     passo3: "Don't have the app yet? <a href=\"https://apps.apple.com/app/id6823827980\">Get Little Tooth Journey on the App Store</a>.",
+    avaliarTitulo: "Enjoying the app?",
+    avaliar: "If you'd like, leave your honest review on the App Store. It's optional and doesn't change your gift, but it helps other families find Little Tooth Journey.",
+    avaliarBotao: "Rate on the App Store",
     fim: "Your expert opinion means a lot to us. Just reply to the email or write to contato@papp.dev.br. 💜",
     termos: "Code valid until {validade}, or while supplies last, in the countries where the app is available on the App Store. An Apple Account is required, subject to prior acceptance of license and usage terms. The code is not for resale and has no cash value. After the free period, the subscription renews at the regular price of the annual plan unless canceled at least 24 hours before, in your Apple Account settings. Full terms: <a href=\"https://www.apple.com/legal/internet-services/itunes/ww/\">apple.com/legal/internet-services/itunes/ww</a>. Offer and content provided by P A P P Desenvolvimento de Software Ltda.",
     invalido: "This gift link is not valid. Check the link you received or write to contato@papp.dev.br.",
@@ -105,6 +118,9 @@ window.PRESENTE_TEXTOS = {
     passo1: "Toca <strong>Canjear mi regalo</strong>: la App Store se abre con el código.",
     passo2: "O, en la app, ve a <strong>Ajustes → Tu plan → Canjear código</strong> e introduce el código.",
     passo3: "¿Aún no tienes la app? <a href=\"https://apps.apple.com/app/id6823827980\">Descarga El Viaje del Dientecito en la App Store</a>.",
+    avaliarTitulo: "¿Te gusta la app?",
+    avaliar: "Si quieres, deja tu valoración sincera en la App Store. Es opcional y no cambia nada de tu regalo, pero ayuda a otras familias a encontrar El Viaje del Dientecito.",
+    avaliarBotao: "Valorar en la App Store",
     fim: "Tu opinión de especialista es muy valiosa para nosotros. Solo responde el correo o escribe a contato@papp.dev.br. 💜",
     termos: "Código válido hasta el {validade}, o hasta agotar existencias, en los países donde la app está disponible en la App Store. Se necesita una cuenta de Apple, sujeto a la aceptación previa de los términos de licencia y uso. El código no se puede revender y no tiene valor en efectivo. Tras el periodo gratuito, la suscripción se renueva al precio normal del plan anual, salvo que se cancele al menos 24 horas antes, en los ajustes de la cuenta de Apple. Términos completos: <a href=\"https://www.apple.com/legal/internet-services/itunes/ww/\">apple.com/legal/internet-services/itunes/ww</a>. Oferta y contenido proporcionados por P A P P Desenvolvimento de Software Ltda.",
     invalido: "Este enlace de regalo no es válido. Revisa el enlace que recibiste o escribe a contato@papp.dev.br.",
@@ -167,6 +183,8 @@ function show(bad, T) {
     navigator.clipboard.writeText(d.c).then(function () { copy.textContent = T.copiado; setTimeout(function () { copy.textContent = T.copiar; }, 1800); });
   };
   set("t-como", T.como); set("t-p1", T.passo1); set("t-p2", T.passo2); set("t-p3", T.passo3); set("t-fim", T.fim);
+  set("t-avaliar-titulo", T.avaliarTitulo); set("t-avaliar", T.avaliar);
+  document.getElementById("review").textContent = T.avaliarBotao;
   set("t-termos", T.termos.replace("{validade}", esc(d.v || "—")));
   show(false, T);
 })();
